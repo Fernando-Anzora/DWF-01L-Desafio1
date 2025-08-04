@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BookAPI - Letras Vivas</title>
+</head>
+<body>
+<h1>📚 BookAPI - Letras Vivas</h1>
+
+<h2>Add Book</h2>
+<form id="bookForm">
+    <input type="text" id="title" placeholder="Title" required>
+    <input type="text" id="author" placeholder="Author" required>
+    <input type="number" id="year" placeholder="Year" required>
+    <button type="submit">Add</button>
+</form>
+
+<h2>Search Books</h2>
+<input type="text" id="search" placeholder="Search by title">
+<button onclick="searchBooks()">Search</button>
+
+<h2>All Books</h2>
+<ul id="bookList"></ul>
+
+<script>
+    const baseUrl = "/api/books";
+
+    async function loadBooks() {
+        const res = await fetch(baseUrl);
+        const books = await res.json();
+        displayBooks(books);
+    }
+
+    function displayBooks(books) {
+        const list = document.getElementById("bookList");
+        list.innerHTML = "";
+        books.forEach(book => {
+            const li = document.createElement("li");
+            li.innerHTML = `${book.title} by ${book.author} (${book.publicationYear})
+          <button onclick="deleteBook(${book.id})">🗑️</button>`;
+            list.appendChild(li);
+        });
+    }
+
+    document.getElementById("bookForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const title = document.getElementById("title").value;
+        const author = document.getElementById("author").value;
+        const year = document.getElementById("year").value;
+
+        await fetch(baseUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ title, author, publicationYear: year })
+        });
+
+        e.target.reset();
+        loadBooks();
+    });
+
+    async function searchBooks() {
+        const keyword = document.getElementById("search").value;
+        const res = await fetch(`${baseUrl}/search?title=${keyword}`);
+        const books = await res.json();
+        displayBooks(books);
+    }
+
+    async function deleteBook(id) {
+        await fetch(`${baseUrl}/${id}`, { method: "DELETE" });
+        loadBooks();
+    }
+
+    loadBooks();
+</script>
+</body>
+</html>
