@@ -1,36 +1,53 @@
 # DWF-01L-Desafio1
-Desafío practico 1 de DWF del grupo de laboratorio 01L, en parejas
-Este proyecto es una API REST desarrollada con **Spring Boot** para la gestión de libros. Permite registrar, consultar, actualizar y eliminar libros.
+DWF practical Challenge 1 of the laboratory group 01L, in pairs
+This project is a REST API developed with **Spring Boot** for book management. It allows you to register, consult, update and delete books.
 
-Dependencias Utilizadas de Spring Boot utilizadas 
+## 🛠 Technologies Used
+Used Spring Boot Dependencies: 
 **Spring Web**
 **Spring Data JPA**
 **H2 Database**
 **Lombok**
 **Spring Boot DevTools**
+Front-End frameworks:
+**HTML5 + JavaScript**
+**Tailwind CSS**
+**Font Awesome**
+**SweetAlert2**
 
-Estructura del proyecto
+Structure of the project
 bookapi/
 ├── src/
 ├── pom.xml
 ├── README.md
 ├── frontend/
 
-Como ejecutar de manera correcta
+## 📋 How to execute correctly
 
-Desde la Terminal de Intellij IDEA 
+👾 Step 1:
+Open the project in Intellij IDEA
 
-Ejecutamos: .\mvnw spring-boot:run o mvn spring-boot:run
+🎆 Method 1:
 
-Desde la consola H2 
+From the Terminal we execute: .\mvnw spring-boot: run or mvn spring-boot: run
+
+From the H2 console 
 http://localhost:8080/h2-console
-Los parametros 
-JDBC URL: jdbc:h2:mem:booksdb
-Usuario:sa
-Contraseña:(vacío)
+The parameters 
+JDBC URL: jdbc: h2:mem: booksdb
+User: sa
+Password:(empty)
 
-Desde HTML
-http://localhost:8080/index.html
+🎆 Method 2:
 
-Desde la terminal CMD
+Run the BookapiApplication file.java from Intellij IDEA visual environment
+
+👾 Step 2:
+
+🎆 Method 1:
+From the browser go to the url: http://localhost:8080/index.html
+
+🎆 Method 2:
+
+From the CMD terminal
 curl http://localhost:8080/api/books
